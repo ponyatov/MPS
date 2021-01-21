@@ -11,7 +11,29 @@ TMP          = $(CWD)/tmp
 # / <section:dir>
 # \ <section:tool>
 WGET         = wget -c
+MPSH         = mps/bin/mps.sh
 # / <section:tool>
+# \ <section:src>
+S += calc ToDo
+# / <section:src>
+# \ <section:all>
+.PHONY: all
+all: $(MPSH)
+	$<
+# / <section:all>
+
+MPS_VER = 2020.3
+MPS     = MPS-$(MPS_VER)
+MPS_GZ  = $(MPS).tar.gz
+
+.PHONY: mps
+mps: $(MPSH)
+
+$(MPSH): tmp/$(MPS_GZ)
+	tar zx < $< && mv "MPS $(MPS_VER)" mps && touch $@
+tmp/$(MPS_GZ):
+	$(WGET) -O $@ https://download.jetbrains.com/mps/$(MPS_VER)/$(MPS_GZ)
+
 # \ <section:install>
 .PHONY: install
 install: $(OS)_install
@@ -22,19 +44,6 @@ update: $(OS)_update
 Linux_install Linux_update:
 	sudo apt update
 	sudo apt install -u `cat apt.txt`
-
-
-MPS_VER = 2020.3
-MPS     = MPS-$(MPS_VER)
-MPS_GZ  = $(MPS).tar.gz
-
-.PHONY: mps
-mps: mps/bin/readme.txt
-
-mps/bin/readme.txt: tmp/$(MPS_GZ)
-	tar zx < $< && mv "MPS $(MPS_VER)" mps && touch $@
-tmp/$(MPS_GZ):
-	$(WGET) -O $@ https://download.jetbrains.com/mps/$(MPS_VER)/$(MPS_GZ)
 # / <section:install>
 # \ <section:merge>
 MERGE  = Makefile README.md apt.txt .gitignore .vscode $(S)
@@ -48,7 +57,7 @@ main:
 shadow:
 	git push -v
 	git checkout $@
-	git pull -v
+	# git pull -v
 .PHONY: release
 release:
 	git tag $(NOW)-$(REL)

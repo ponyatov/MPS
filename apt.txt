@@ -1,2 +1,2 @@
 git make wget
-openjdk-11-jre
+openjdk-11-jdk

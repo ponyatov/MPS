@@ -1,2 +1,5 @@
 /mps/
 !.gitignore
+# MPS
+*_gen*/
+*/.mps/workspace.xml
