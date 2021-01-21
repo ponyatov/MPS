@@ -1,0 +1,34 @@
+{
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.f11",
+            "sequence": [
+                "workbench.action.files.saveAll",
+                {"command": "workbench.action.terminal.sendSequence","args": {"text":
+                    "\u000D clear ; make web \u000D"
+                }}]
+        },
+        {
+            "command": "multiCommand.f12",
+            "sequence": [
+                "workbench.action.files.saveAll",
+                {"command": "workbench.action.terminal.sendSequence","args": {"text":
+                    "\u000D clear ; make pep \u000D"
+                }}]
+        },
+    ],
+    "files.watcherExclude": {
+        "**/mps/**":true,
+        "**/tmp/**":true,
+    },    
+    "files.exclude": {
+        // "**/mps/**":true,
+    },
+    "files.associations": {
+        /* \ <section:assoc> */
+        "apt.txt": "config",
+        /* / <section:assoc> */
+    },
+    "editor.tabSize": 4,
+    "workbench.tree.indent": "32"
+}
