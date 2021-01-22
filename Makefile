@@ -14,7 +14,7 @@ WGET         = wget -c
 MPSH         = mps/bin/mps.sh
 # / <section:tool>
 # \ <section:src>
-S += calc ToDo
+S += calc ToDo metaL
 # / <section:src>
 # \ <section:all>
 .PHONY: all
